@@ -495,6 +495,7 @@ int WirelessFT::telnetDisconnect() {
     ROS_ERROR( "Exception in telnetDisconnect" );
     return -1;
   }
+  return 0; // stupic gcc 
 }
 
 
@@ -689,6 +690,8 @@ int WirelessFT::udpStartStreaming()
   unsigned int length = 10;
   int n = write( udpSocket, buffer, length );
   ROS_INFO( "udpStartStreaming: wrote %d bytes", n );
+
+  return 0;
 }
 
 
@@ -713,6 +716,8 @@ int WirelessFT::udpStopStreaming()
   unsigned int length = 6;
   int n = write( udpSocket, buffer, length );
   ROS_INFO( "udpStopStreaming: wrote %d bytes", n );
+
+  return 0;
 }
 
 
@@ -737,6 +742,8 @@ int WirelessFT::udpPing()
   unsigned int length = 6;
   int n = write( udpSocket, buffer, length );
   ROS_INFO( "udpStopStreaming: wrote %d bytes", n );
+
+  return 0;
 }
 
 
@@ -761,6 +768,8 @@ int WirelessFT::udpResetTelnetSocket()
   unsigned int length = 6;
   int n = write( udpSocket, buffer, length );
   ROS_INFO( "udpStopStreaming: wrote %d bytes", n );
+
+  return 0;
 }
 
 
@@ -934,6 +943,8 @@ int WirelessFT::decodeDataPacket( char* buffer, unsigned int n_bytes ) {
     wrench6.wrench.torque.z = w6(5);
     wrench_6_publisher.publish( wrench6 );
   }
+
+  return 0;
 }
 
 
@@ -969,6 +980,8 @@ bool WirelessFT::serviceCallback( std_srvs::Empty::Request &req, std_srvs::Empty
   // telnetCommand( response, "bias 3 on\r\n"); // only channel 3
   telnetCommand( response, "bias * on\r\n");
   usleep( 0.2*1000*1000 );
+
+  return true;
 }
 
 
